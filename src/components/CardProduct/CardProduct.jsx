@@ -1,6 +1,7 @@
 // CardProduct.jsx
 import React, { useState } from 'react';
 import { ProductModal } from '../ProductModal/ProductModal';
+import { IoIosClose } from "react-icons/io";
 
 export const CardProduct = ({ id, title, price, category, description, image }) => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -8,13 +9,11 @@ export const CardProduct = ({ id, title, price, category, description, image }) 
 
   const abrirModal = () => {
     setModalVisible(true);
-    // Deshabilitar el scroll del body
     document.body.classList.add('overflow-hidden');
   };
 
   const cerrarModal = () => {
     setModalVisible(false);
-    // Habilitar el scroll del body cuando se cierra la ventana modal
     document.body.classList.remove('overflow-hidden');
   };
 
@@ -38,7 +37,7 @@ export const CardProduct = ({ id, title, price, category, description, image }) 
         </div>
 
         {modalVisible &&
-          <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center z-50">
+          <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center z-10">
             <div className="absolute top-0 left-0 w-full h-full bg-black opacity-60" onClick={cerrarModal}></div>
             <ProductModal product={product} onClose={cerrarModal} />
           </div>

@@ -1,22 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Logo } from '../../Logo/Logo';
 import { Nav } from '../../Nav/Nav';
 import { Main } from '../../Main/Main';
 import { FirstImage } from '../../FirstImage/FirstImage';
 import { Products } from '../../Products/Products';
 import { CardProduct } from '../../CardProduct/CardProduct';
-import { ProductModal } from '../../ProductModal/ProductModal';
 import { Header } from '../../Header/Header';
+import { shopContext } from '../../Context/Context';
 
 export const Home = () => {
 
-  const [products, setProducts] = useState([]);
-
-  useEffect(() => {
-    fetch('https://fakestoreapi.com/products')
-      .then(res => res.json())
-      .then(data => setProducts(data));
-  }, []);
+ const productsContext = useContext(shopContext)
 
   return (
     <>
@@ -27,7 +21,7 @@ export const Home = () => {
       <Main>
         <FirstImage>{/* Contenido opcional */}</FirstImage>
         <Products>
-          {products.map((product) => (
+          {productsContext.products.map((product) => (
             <CardProduct
               key={product.id}
               id={product.id}
